@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Community Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f9;
+        }
+
+        .main-header {
+            background: linear-gradient(135deg, #4c6ef5, #24292e);
+            color: #fff;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: slide-down 1s ease-out;
+        }
+
+        @keyframes slide-down {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .main-header .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f4d03f;
+            text-shadow: 0 0 10px #f4d03f, 0 0 20px #f4d03f, 0 0 30px #f4d03f;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+
+        .section h2 {
+            color: #24292e;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            animation: fade-in 2s ease-in-out;
+        }
+
+        .section h2::after {
+            content: '';
+            width: 50px;
+            height: 4px;
+            background: #4c6ef5;
+            display: block;
+            margin: 0.5rem auto;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .projects-container, .members-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .project-card, .member-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 1.5rem;
+            width: 280px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover, .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3, .member-card h3 {
+            margin-top: 0;
+            color: #4c6ef5;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover h3, .member-card:hover h3 {
+            color: #3a53c3;
+        }
+
+        .project-card p, .member-card p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .project-card .btn, .member-card .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #4c6ef5;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .project-card .btn:hover, .member-card .btn:hover {
+            background: #3a53c3;
+        }
+
+        .member-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        #contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            animation: fade-in 2s ease-in-out;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #24292e;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #333;
+            background: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #4c6ef5;
+            outline: none;
+            box-shadow: 0 0 6px rgba(76, 110, 245, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #24292e;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: background 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        .btn:hover {
+            background: #4c6ef5;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        footer {
+            background: linear-gradient(135deg, #24292e, #4c6ef5);
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+            animation: slide-up 1s ease-out;
+        }
+
+        @keyframes slide-up {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        footer .social-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0 0;
+            padding: 0;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #f4d03f;
+            text-shadow: 0 0 10px #f4d03f, 0 0 20px #f4d03f, 0 0 30px #f4d03f;
+        }
+
+        /* New styles for orange background */
+        .orange-background {
+            background-color: orange !important;
+        }
+    </style>
+    <script>
+        function showAboutContent() {
+            const aboutSection = document.getElementById('about-content');
+            aboutSection.innerHTML = `
+                <h2>What is GitHub?</h2>
+                <p>GitHub is a web-based platform for version control and collaboration on software development projects.</p>
+                <h3>Key Features and Benefits</h3>
+                <ul>
+                    <li><strong>Version Control:</strong> Tracks changes to code, allowing multiple developers to collaborate on the same project.</li>
+                    <li><strong>Collaboration:</strong> Enables open-source and private projects, facilitating teamwork and knowledge sharing.</li>
+                    <li><strong>Project Management:</strong> Includes tools for issue tracking, project planning, and team collaboration.</li>
+                    <li><strong>Security:</strong> Provides secure code storage, access control, and encryption.</li>
+                    <li><strong>Learning and Development:</strong> Offers access to open-source code, tutorials, and a community of developers.</li>
+                    <li><strong>Career Opportunities:</strong> Enhances job prospects by showcasing projects and contributions.</li>
+                    <li><strong>Integration and Customization:</strong> Supports integration with other tools and allows customization of workflows.</li>
+                </ul>
+                <h3>Why Use GitHub?</h3>
+                <p>GitHub is essential for developers, teams, and organizations to manage code, collaborate on projects, and showcase their work to the world.</p>
+            `;
+            // Apply orange background to the section
+            aboutSection.classList.add('orange-background');
+        }
+
+        function showDomainsContent() {
+            const domainsSection = document.getElementById('domains-content');
+            domainsSection.innerHTML = `
+                <h2>Domains where GitHub is Utilized</h2>
+                <ol>
+                    <li><strong>Web Development:</strong> Building and maintaining websites, web applications, and mobile applications. GitHub helps web developers collaborate and manage projects.</li>
+                    <li><strong>Data Science:</strong> Extracting insights and knowledge from data using machine learning, statistics, and data visualization. GitHub enables data scientists to share and collaborate on projects.</li>
+                    <li><strong>Machine Learning:</strong> Training algorithms to learn from data and make predictions or decisions. GitHub facilitates collaboration and version control for machine learning models.</li>
+                    <li><strong>Mobile App Development:</strong> Building and maintaining mobile applications for Android and iOS devices. GitHub helps mobile app developers manage code and collaborate with teams.</li>
+                    <li><strong>Game Development:</strong> Building and maintaining games for PCs, consoles, and mobile devices. GitHub enables game developers to collaborate and manage projects.</li>
+                </ol>
+                <h3>Benefits of Using GitHub</h3>
+                <ul>
+                    <li>Version control: Track changes to code</li>
+                    <li>Collaboration: Work with others on projects</li>
+                    <li>Project management: Manage issues, plans, and teams</li>
+                    <li>Community engagement: Share knowledge and learn from others</li>
+                    <li>Showcasing work: Demonstrate skills and projects</li>
+                </ul>
+            `;
+            // Apply orange background to the section
+            domainsSection.classList.add('orange-background');
+        }
+
+        function showEventsContent() {
+            const eventsSection = document.getElementById('events-content');
+            eventsSection.innerHTML = `
+                <h2>Upcoming GitHub-Related Events</h2>
+                <ul>
+                    <li><strong>PEC Hacks 2.0:</strong> A 36-hour student-run hackathon in Chennai, India, scheduled for December 28-29, 2024. Participants can innovate and compete for cash prizes totaling ₹300,000.</li>
+                    <li><strong>The Season of AI S2: Prompt Crafting Techniques for GitHub Copilot:</strong> An online workshop on December 29, 2024, aimed at making learning about GitHub Copilot accessible and equipping participants with useful skills for jobs using Microsoft technologies.</li>
+                    <li><strong>Hack Revolution:</strong> One of Hyderabad's largest annual hackathons, taking place on January 5, 2025. It's well-received by students, especially first-years seeking their first hackathon experience.</li>
+                    <li><strong>GitHub Universe 2025:</strong> GitHub's flagship event, scheduled for October 28-29, 2025. It's the world's fair of software, where AI, DevEx, and security take center stage.</li>
+                    <li><strong>Open Source Summit Japan:</strong> An in-person event in Tokyo, Japan, from December 8-10, 2025, focusing on open-source software and its community.</li>
+                </ul>
+            `;
+            // Apply orange background to the section
+            eventsSection.classList.add('orange-background');
+        }
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <h1 class="logo">GitHub Community</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about" onclick="showAboutContent(); return false;">About</a></li>
+                    <li><a href="#domains" onclick="showDomainsContent(); return false;">Domains</a></li>
+                    <li><a href="#events" onclick="showEventsContent(); return false;">Events</a></li>
+                    <li><a href="#contact">Details</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container" id="about-content">
+            <h2>Welcome to the GIT Community!</h2>
+            <p>Our community connects developers to collaborate, share knowledge, and contribute to impactful open-source projects. Join us and make a difference!</p>
+            <p><a href="https://github.com/github-community-gitam" target="_blank">View Official GitHub Page</a></p>
+        </div>
+    </section>
+
+    <section id="domains" class="section">
+        <div class="container" id="domains-content">
+            <!-- Content will be dynamically added here by JavaScript -->
+        </div>
+    </section>
+
+    <section id="events" class="section">
+        <div class="container" id="events-content">
+            <!-- Content will be dynamically added here by JavaScript -->
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 GitHub Community</p>
+        <div class="social-links">
+            <a href="https://twitter.com/github" target="_blank">Twitter</a>
+            <a href="https://github.com/github" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/company/github" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>
